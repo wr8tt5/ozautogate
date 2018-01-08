@@ -1,10 +1,44 @@
 #!/bin/bash
+#
+# Deploy to Azure Webapp service.
+#
+# Debugging notes.
+#   To capture and stream console ouput, add the follow two lines to the iisnode.yml file in the
+#   Webapp wwwroot directory.
+#     loggingEnabled: true
+#     devErrorsEnabled: true
+#
+#   ... and use the following command to stream the output.
+#
+#     az webapp log tail --name ozautogate2 --resource-group ozautogate
+#
 webappname='ozautogate'
 resourcegroup='ozautogate'
+zipname='dist.zip'
 
-creds=($(az webapp deployment list-publishing-profiles --name ${webappname} --resource-group ${resourcegroup} \
---query "[?contains(publishMethod, 'FTP')].[publishUrl,userName,userPWD]" --output tsv))
-echo ${creds[0]} ${creds[1]} ${creds[2]}
+rm -f dist/${zipname} > /dev/null
 
-cd dist
-find . -type f -exec curl -T {} -u ${creds[1]}:${creds[2]} ${creds[0]}/{} --ftp-create-dirs \; -print
+echo '----> Installing npm dependencies...'
+if ! (cd dist && npm install); then
+    echo 'Failed to install dist npm package dependencies'
+    exit 1
+fi
+
+echo '----> Zipping the dist directory...'
+if ! (cd dist && zip -q -r ${zipname} .); then
+    echo 'Failed to zip the dist directory'
+    exit 1
+fi
+
+echo "----> Deploying the distribution to the ${webappname} Webapp..."
+if ! az webapp deployment source config-zip \
+       --resource-group ${resourcegroup} \
+       --name ${webappname} --src dist/${zipname}; then
+    echo 'Failed to deploy app'
+    exit 1
+fi
+
+echo '----> Cleaning up...'
+rm -f dist/${zipname}
+
+echo "Done."
