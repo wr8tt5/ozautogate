@@ -1,0 +1,11 @@
+.carousel-indicators li {
+    background-color: #00000015;
+}
+
+.carousel-indicators .active {
+    background-color: #00000038;
+}
+
+.carousel-item {
+      height: 6rem;
+}

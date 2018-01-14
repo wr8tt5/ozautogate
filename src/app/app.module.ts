@@ -9,6 +9,7 @@ import { LandingComponent } from './landing/landing.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { WINDOW_PROVIDERS } from './window.service';
 
 
@@ -18,7 +19,8 @@ import { WINDOW_PROVIDERS } from './window.service';
     NavbarComponent,
     LandingComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    TestimonialsComponent
   ],
   imports: [
     BrowserModule,
