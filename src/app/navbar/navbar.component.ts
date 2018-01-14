@@ -13,21 +13,36 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(WINDOW) private window: Window
-  ) {
-    console.log(window.navigator.userAgent);
-   }
-
+    @Inject(WINDOW) private window: Window) {
+  }
+  
   ngOnInit() {
+  }
+
+  setShowNavBrand() {
+    let show: boolean = this.showNavBrand;
+    let scrollOffset: number = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    if (scrollOffset > 100) {
+      show = false;
+    } else if (!show && scrollOffset < 10) {
+      show = true;
+    }
+
+    if (show && this.window.innerWidth < 1155) {
+      // Window too small.
+      show = false;
+    }
+
+    this.showNavBrand = show;
   }
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
-    let number = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
-    if (number > 100) {
-      this.showNavBrand = false;
-    } else if (!this.showNavBrand && number < 10) {
-      this.showNavBrand = true;
-    }
+    this.setShowNavBrand();
+  }
+
+  @HostListener("window:resize", [])
+  onResize() {
+    this.setShowNavBrand();
   }
 }

@@ -10,6 +10,5 @@ export class AppComponent {
   title = 'OzAutogate';
 
   constructor(@Inject(WINDOW) public window: Window) {
-    console.log(window);
   }
 }
