@@ -9,6 +9,7 @@ import { LandingComponent } from './landing/landing.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { WINDOW_PROVIDERS } from './window.service';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { AboutComponent } from './about/about.component';
     CarouselModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [ ],
+  providers: [ WINDOW_PROVIDERS ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

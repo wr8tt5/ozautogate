@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import {WINDOW} from './window.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'OzAutogate';
+
+  constructor(@Inject(WINDOW) public window: Window) {
+    console.log(window);
+  }
 }
