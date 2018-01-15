@@ -1,9 +1,9 @@
 .carousel-indicators li {
-    background-color: #00000015;
+    background-color: rgba(0, 0, 0, 0.2)
 }
 
 .carousel-indicators .active {
-    background-color: #00000038;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .carousel-item {
