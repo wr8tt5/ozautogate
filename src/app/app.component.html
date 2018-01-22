@@ -1,6 +1,14 @@
 <app-navbar></app-navbar>
 
 <main role="main">
+  <!-- Center the autogate logo at the top of the window; disappear/reappear it on scroll -->
+  <div *ngIf="showNavBrand" style="position: fixed; left: 50%; z-index: 1030; top: 0;">
+    <div style="position: relative; left: -50%; padding: 0.5rem">
+    <a href="#">
+        <img class="rounded" src="assets/images/ozautogate_logo.jpg" alt="OzAutogate">
+    </a>
+    </div>
+  </div>
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
