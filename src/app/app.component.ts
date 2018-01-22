@@ -9,17 +9,17 @@ import {WINDOW} from './window.service';
 })
 export class AppComponent {
   title = 'OzAutogate';
-  public showNavBrand: boolean = true;
+  public showLogo: boolean = true;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window) {
   }
 
-  setShowNavBrand() {
-    let show: boolean = this.showNavBrand;
+  setShowLogo() {
+    let show: boolean = this.showLogo;
     let scrollOffset: number = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
-    if (scrollOffset > 100) {
+    if (scrollOffset >= 100) {
       show = false;
     } else if (!show && scrollOffset < 10) {
       show = true;
@@ -30,16 +30,16 @@ export class AppComponent {
       show = false;
     }
 
-    this.showNavBrand = show;
+    this.showLogo = show;
   }
 
   @HostListener("window:scroll", [])
   onWindowScroll() {
-    this.setShowNavBrand();
+    this.setShowLogo();
   }
 
   @HostListener("window:resize", [])
   onResize() {
-    this.setShowNavBrand();
+    this.setShowLogo();
   }
 }
