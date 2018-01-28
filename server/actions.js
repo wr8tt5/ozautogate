@@ -5,7 +5,7 @@ exports.sendquote = function(req, res) {
   if (false) {
   var server = email.server.connect({
          user: 'wr8tt5'
-    ,password: 'Tigore44'
+    ,password: 'blahblah'
         ,host: 'smtp.mail.yahoo.com.au'
          ,ssl: true
   });
