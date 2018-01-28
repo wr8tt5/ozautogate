@@ -27,7 +27,7 @@ Comments: ${req.body.comments}
     server.send({
       text: msg,
       from: `${quoteEmailUser}@yahoo.com.au`,
-      to:   `${quoteEmailUser}@yahoo.com.au`,
+      to:   'mathew@ozautogate.com',
       subject: 'Autogate quote request'},
       function(err, message) {
         if (err) {
