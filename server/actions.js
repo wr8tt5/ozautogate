@@ -5,7 +5,7 @@ exports.sendquote = function(req, res) {
   const quoteEmailUser = process.env.QUOTE_EMAIL_USER;
   const quoteEmailPwd = process.env.QUOTE_EMAIL_PWD;
 
-  if (quoteEmailUser == '' || quoteEmailPwd == '') {
+  if (!quoteEmailUser || !quoteEmailPwd) {
     console.log('No email credentials are present');
   }
   else {
