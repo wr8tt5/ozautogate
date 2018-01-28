@@ -1,0 +1,79 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Quote Request</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+<div [hidden]="submitted">
+  <form (ngSubmit)="onSubmit()" #quoteForm="ngForm">
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputContactName">Name</label>
+          <input type="text" class="form-control" id="inputContactName" placeholder="Your name" maxlength="80" required
+                      [(ngModel)]="model.name" name="name"
+                      #name="ngModel">
+          <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+              Name is required
+          </div>                   
+        </div>
+  </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputEmail">Your contact Email</label>
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email" maxlength="80" required
+                      [(ngModel)]="model.email" name="email" email
+                      #email="ngModel">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            Email is required
+          </div>                   
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCountry">Country</label>
+            <select class="form-control" id="inputCountry" required
+                        [(ngModel)]="model.country" (change)="onChangeCountry($event.target.selectedIndex)" name="country">
+              <option *ngFor="let country of allCountries" [value]="country">{{country}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+              <label for="inputState">State</label>
+              <select class="form-control" id="inputState" required
+                          [(ngModel)]="model.state" name="state">
+                <option *ngFor="let state of countryStates" [value]="state">{{state}}</option>
+              </select>
+          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputGateType">Gate type</label>
+          <select class="form-control" id="inputGateType" required
+                      [(ngModel)]="model.gateType" name="gateType">
+            <option *ngFor="let gateType of gateTypes" [value]="gateType">{{gateType}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputText">Comments/Questions</label>
+          <textarea class="form-control" id="inputText" rows="5" cols="50" maxlength="300"
+                          [(ngModel)]="model.comments" name="comments">
+          </textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success" [disabled]="!quoteForm.form.valid">Submit</button>
+    </div>
+  </form>
+</div>
+<div [hidden]="!submitted">
+    <div class="modal-body">
+      <p>Thank you! We'll be in touch.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+      </div>  
+</div>
+

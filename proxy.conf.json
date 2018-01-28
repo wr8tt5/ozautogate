@@ -1,0 +1,6 @@
+{
+  "/sendquote": {
+    "target": "http://fingermark:3000",
+    "secure": false
+  }
+}
