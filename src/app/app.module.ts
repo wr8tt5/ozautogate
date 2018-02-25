@@ -17,6 +17,7 @@ import { WINDOW_PROVIDERS } from './window.service';
 import { QuoteModalComponent } from './quote-modal/quote-modal.component';
 import { QuoteModalService } from './quote-modal.service';
 import { UnlocodeService } from './unlocode.service';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { UnlocodeService } from './unlocode.service';
     ContactComponent,
     AboutComponent,
     TestimonialsComponent,
-    QuoteModalComponent
+    QuoteModalComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
