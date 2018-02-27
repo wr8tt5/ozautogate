@@ -1,3 +1,7 @@
+/* Space out the featurettes */
+.featurette {
+  padding-top: 2rem;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
