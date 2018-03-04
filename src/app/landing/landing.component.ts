@@ -35,7 +35,7 @@ export class LandingComponent implements OnInit {
     this.showLogo = show;
   }
 
-  @HostListener("window:scroll", [])
+ /*  @HostListener("window:scroll", [])
   onWindowScroll() {
     this.setShowLogo();
   }
@@ -44,5 +44,5 @@ export class LandingComponent implements OnInit {
   onResize() {
     this.setShowLogo();
   }
-
+ */
 }

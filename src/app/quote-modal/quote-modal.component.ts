@@ -16,6 +16,10 @@ class QuoteRequest {
     public country?: string,
     public state?: string,
     public gateType?: string,
+    public gateColour?: string,
+    public gateWidth?: string,
+    public gateOpening?: string,
+    public postsSupplied?: string,
     public comments?: string) {}
 }
 
@@ -32,6 +36,9 @@ export class QuoteModalComponent implements OnInit {
   allStates: States;
   countryStates: string[];
   gateTypes: string[] = [ 'Standard', 'Deluxe' ];
+  gateWidths: string[] = [];
+  leftRight: string[] = ['Left','Right'];
+  yesNo: string[] = ['Yes','No'];
   submitted: boolean = false;
 
   model: QuoteRequest = new QuoteRequest();
@@ -43,6 +50,7 @@ export class QuoteModalComponent implements OnInit {
   ngOnInit() {
     this.getCountries();
     this.getStates();
+    this.getWidths();
   }
 
   getCountries(): void {
@@ -53,6 +61,14 @@ export class QuoteModalComponent implements OnInit {
     this.unlocodeService.getStates().subscribe(states => this.allStates = states);
   }
 
+  getWidths(): void {
+    const minWidth: number = 3000;
+    const maxWidth: number = 4200;
+    let i: number;
+    for (i = minWidth; i <= maxWidth; i += 150) {
+      this.gateWidths.push(i.toString()+'mm');
+    }
+  }
   onChangeCountry(selectedIndex: number): void {
     if (selectedIndex >= 0) {
         this.countryStates = this.allStates[selectedIndex];

@@ -1,9 +1,10 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Quote Request</h4>
+    <h4 class="modal-title pull-left">Customer Enquiry</h4>
+    <img class="img-fluid mx-auto" src="assets/images/ozautogate_logo.jpg" width="150" height="150" alt="OzAutogate logo">
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
-  </div>
+</div>
 <div [hidden]="submitted">
   <form (ngSubmit)="onSubmit()" #quoteForm="ngForm">
     <div class="modal-body">
@@ -17,7 +18,7 @@
               Name is required
           </div>                   
         </div>
-  </div>
+      </div>
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="inputEmail">Your contact Email</label>
@@ -51,6 +52,45 @@
           <select class="form-control" id="inputGateType" required
                       [(ngModel)]="model.gateType" name="gateType">
             <option *ngFor="let gateType of gateTypes" [value]="gateType">{{gateType}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row" [hidden]="model.gateType != 'Deluxe'">
+        <div class="form-group col-md-12">
+          <label for="inputGateColour">Colour (type the name of any COLORBOND® colour)</label>
+          <input type="text" class="form-control" id="inputGateColour" placeholder="Colour" maxlength="80" required
+                      [(ngModel)]="model.gateColour" name="gateColour"
+                      #gateColour="ngModel">
+          <div [hidden]="gateColour.valid || gateColour.pristine" class="alert alert-danger">
+              Gate colour is required if ordering a Deluxe style gate
+          </div>                   
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="inputGateWidth">Gate width</label>
+          <select class="form-control" id="inputGateWidth" required
+                      [(ngModel)]="model.gateWidth" name="gateWidth">
+            <option *ngFor="let gateWidth of gateWidths" [value]="gateWidth">{{gateWidth}}</option>
+          </select>
+          <div>The gate is required to be a minimum of 150mm wider than the width of the posts. Refer to our <a href="assets/docs/Installation_and_assembly_instructions.pdf" target="_blank">installation instructions</a>.</div>
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+          <label for="inputGateOpening">Gate opening (when entering from the road)</label>
+          <select class="form-control" id="inputGateOpening" required
+                      [(ngModel)]="model.gateOpening" name="gateOpening">
+            <option *ngFor="let gateOpening of leftRight" [value]="gateOpening">{{gateOpening}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+          <label for="inputGateOpening">Would you like us to supply the posts?</label>
+          <select class="form-control" id="inputPostsSupplied" required
+                      [(ngModel)]="model.postsSupplied" name="postsSupplied">
+            <option *ngFor="let postsSupplied of yesNo" [value]="postsSupplied">{{postsSupplied}}</option>
           </select>
         </div>
       </div>
