@@ -1,4 +1,4 @@
-import { Component, OnInit,HostListener,Inject } from '@angular/core';
+import { Component, OnInit, HostListener, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import {WINDOW} from '../window.service';
 
@@ -9,8 +9,8 @@ import {WINDOW} from '../window.service';
 })
 export class LandingComponent implements OnInit {
 
-  public showLogo: boolean = true;
-  
+  public showLogo = true;
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window) { }
@@ -20,7 +20,7 @@ export class LandingComponent implements OnInit {
 
   setShowLogo() {
     let show: boolean = this.showLogo;
-    let scrollOffset: number = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    const scrollOffset: number = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
     if (scrollOffset >= 100) {
       show = false;
     } else if (!show && scrollOffset < 10) {
