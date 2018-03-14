@@ -50,12 +50,12 @@
         <div class="form-group col-md-12">
           <label for="inputGateType">Gate type</label>
           <select class="form-control" id="inputGateType" required
-                      [(ngModel)]="model.gateType" name="gateType">
+                     (change)="model.gateColour = ''" [(ngModel)]="model.gateType" name="gateType">
             <option *ngFor="let gateType of gateTypes" [value]="gateType">{{gateType}}</option>
           </select>
         </div>
       </div>
-      <div class="form-row" [hidden]="model.gateType != 'Deluxe'">
+      <div *ngIf="model.gateType == 'Deluxe'" class="form-row">
         <div class="form-group col-md-12">
           <label for="inputGateColour">Colour (type the name of any COLORBOND® colour)</label>
           <input type="text" class="form-control" id="inputGateColour" placeholder="Colour" maxlength="80" required
