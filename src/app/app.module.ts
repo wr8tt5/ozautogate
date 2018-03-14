@@ -18,6 +18,7 @@ import { QuoteModalComponent } from './quote-modal/quote-modal.component';
 import { QuoteModalService } from './quote-modal.service';
 import { UnlocodeService } from './unlocode.service';
 import { ProductsComponent } from './products/products.component';
+import { VideosComponent } from './videos/videos.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ProductsComponent } from './products/products.component';
     AboutComponent,
     TestimonialsComponent,
     QuoteModalComponent,
-    ProductsComponent
+    ProductsComponent,
+    VideosComponent
   ],
   imports: [
     BrowserModule,
